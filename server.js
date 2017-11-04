@@ -1,8 +1,7 @@
 var express = require('express')
 var app = express()
-// var mongojs = require('mongojs')
-// var db = mongojs('contactlist',['contactlist'])
-var mongoose = require('mongoose')
+var mongojs = require('mongojs')
+var db = mongojs('contactlist',['contactlist'])
 var bodyParser = require('body-parser')
 
 app.use(express.static(__dirname + "/public"))
@@ -60,21 +59,8 @@ app.put('/contactList/:id', (req,res) => {
 
       console.log(doc)
       res.json(doc)
-    }
-  )
-})
-
-/*
-  Necesitamos express router para redireccionamiento a módulos del servidor Node, por lo que:
-    - express-router
-    - modulos logueo y registro
-    - control de rutas (sencillo)
-*/
-
-app.get('/login', (req,res) => {
-  console.log("Received GET request")
-  res.json({message: 'Prueba login'})
-})
+    })
+  })
 
 app.listen(3000)
 console.log("Server running on port 3000")
